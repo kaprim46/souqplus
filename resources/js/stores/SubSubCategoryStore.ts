@@ -1,11 +1,8 @@
 import { defineStore } from 'pinia';
 import axios from '@/axios';
+import { SubSubCategory } from '@/types/Category';
 
-interface SubSubCategory {
-  id: number;
-  name: string;
-  sub_category_id: number;
-}
+
 
 interface State {
   subSubCategories: SubSubCategory[];

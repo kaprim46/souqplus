@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\Dashboard\{
     ExploreSliderController,
     SplashScreensController,
     SettingController,
+    SubSubCategoryController,
     CountryController,
     CategoryController as DashboardCategoryController,
     FilterController
@@ -206,6 +207,10 @@ Route::prefix('filters')
         Route::get('/sub/category/{id}', [FilterController::class, 'getFiltersBySubCategory']);
     });
 
+
+
+
+
 /**
  * Authenticated routes
  */
@@ -214,6 +219,19 @@ Route::middleware(['auth:sanctum'])
         /**
          * Logout route
          */
+
+
+        Route::prefix('dashboard')
+            ->group(function() {
+
+                // Route to get all sub-sub-categories for a given sub-category
+                Route::get('/sub/categories/{subCategory}/sub-sub-categories', [SubSubCategoryController::class, 'index']);
+
+                // Standard resource routes for creating, showing, updating, deleting sub-sub-categories
+                Route::apiResource('/sub-sub-categories', SubSubCategoryController::class)->except(['index']);
+
+            });
+
         Route::post('/logout', function (Request $request) {
             $request->user()->tokens()->delete();
             return response()->json([

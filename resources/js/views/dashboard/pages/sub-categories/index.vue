@@ -87,6 +87,12 @@
                                 </td>
                                 <td  class="h-px px-6 py-2">
                                     <div class="flex justify-end gap-x-2">
+                                        <!-- THIS BUTTON NOW NAVIGATES DIRECTLY TO THE CREATE PAGE -->
+                                        <v-button color="purple" class="whitespace-nowrap" @click="router.push({ name: 'sub-sub-category.create', params: { sub_category_id: category.id } })">
+                                            <i class="icon mgc_org_tree_line"></i>
+                                            {{ $t('Sub Sub Categories') }}
+                                        </v-button>
+
                                         <v-button color="blue" class="whitespace-nowrap" @click="router.push({ name: 'sub-category.edit', params: { id: category.id } })">
                                             <i class="icon mgc_edit_line"></i>
                                             {{ $t('Edit') }}

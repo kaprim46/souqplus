@@ -22,3 +22,11 @@ export interface Category {
     },
     filters: Filter[]
 }
+
+
+export interface SubSubCategory {
+  id?: number;
+  name: string;
+  sub_category_id: number | null;
+  status: 'active' | 'inactive';
+}
