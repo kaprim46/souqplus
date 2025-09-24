@@ -1,0 +1,1 @@
+const e="ltr",n="Language",d="Pending",t="Approved",a="Rejected",o={dir:e,Language:n,pending:d,approved:t,rejected:a};export{n as Language,t as approved,o as default,e as dir,d as pending,a as rejected};

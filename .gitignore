@@ -1,0 +1,9 @@
+/vendor
+/node_modules
+/package-lock.json
+/yarn.lock
+/composer.lock
+/public/storage
+/storage/app/public
+.DS_Store
+firebase.json

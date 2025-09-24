@@ -1,0 +1,107 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import "./fonts/MingCute.css";
+
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@100..900&display=swap');
+
+body {
+    font-family: "Noto Sans Arabic", sans-serif;
+    font-style: normal;
+}
+
+select {
+    background-image: url('data:image/svg+xml;utf8,<svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>');
+    background-size: .9rem .9rem;
+    @apply ltr:bg-right rtl:bg-left;
+}
+
+.v-nazih-paragraph {
+    margin-bottom: 0;
+    color: #000;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.v-nazih-link {
+    color: #3b82f6;
+    text-decoration: underline;
+}
+
+.v-nazih-bullet-list {
+    list-style-type: disc;
+    margin-left: 1.5rem;
+}
+
+.v-nazih-ordered-list {
+    list-style-type: decimal;
+    margin-left: 1.5rem;
+}
+
+.v-nazih-blockquote {
+    border-left: 2px solid #e2e8f0;
+    padding-left: 1rem;
+    margin-left: 0;
+    margin-right: 0;
+    color: #4b5563;
+}
+
+.v-nazih-image {
+    max-width: 50%;
+    min-height: 100px;
+    margin-bottom: 1rem;
+    border-radius: 0.5rem;
+}
+
+h1.v-nazih-heading {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+}
+
+h2.v-nazih-heading {
+    font-size: 1.75rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+}
+
+h3.v-nazih-heading {
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+}
+
+h4.v-nazih-heading {
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+}
+
+h5.v-nazih-heading {
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+}
+
+h6.v-nazih-heading {
+    font-size: 0.875rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+}
+
+.ads-list {
+    .advertisement:nth-child(odd) {
+        @apply bg-white rounded-none;
+    }
+    .advertisement:nth-child(even) {
+        @apply bg-gray-50 rounded-none;
+    }
+}

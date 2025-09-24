@@ -1,0 +1,20 @@
+[
+    {
+        "name" : "Yemen",
+        "arabic_name" : "اليمن",
+        "dial_code" : "+967",
+        "emoji" : "🇾🇪",
+        "code" : "YE",
+        "timezone" : "Asia/Aden",
+        "currency" : "﷼"
+    },
+    {
+        "name": "Saudi Arabia",
+        "arabic_name": "المملكة العربية السعودية",
+        "dial_code": "+966",
+        "emoji": "🇸🇦",
+        "code": "SA",
+        "timezone": "Asia/Riyadh",
+        "currency": "﷼"
+    }
+]

@@ -1,0 +1,1 @@
+import{_ as t,e as o,l as _,c,o as n}from"./app-4aaa95f7.js";const s={},r={class:"h-screen"};function a(l,u){const e=c("router-view");return n(),o("div",r,[_(e)])}const d=t(s,[["render",a]]);export{d as default};

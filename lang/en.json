@@ -1,0 +1,7 @@
+{
+    "dir": "ltr",
+    "Language": "Language",
+    "pending" : "Pending",
+    "approved" : "Approved",
+    "rejected" : "Rejected"
+}
