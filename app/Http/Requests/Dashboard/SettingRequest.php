@@ -55,11 +55,15 @@ class SettingRequest extends FormRequest
         ];
 
         if($this->hasFile('app_logo')) {
-            $rules['app_logo'] = 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048';
+           $rules['app_logo'] = 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5120';
+        } else {
+            $rules['app_logo'] = 'nullable|string';
         }
 
         if($this->hasFile('app_favicon')) {
-            $rules['app_favicon'] = 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048';
+            $rules['app_favicon'] = 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5120';
+        } else {
+            $rules['app_favicon'] = 'nullable|string';
         }
 
         return $rules;

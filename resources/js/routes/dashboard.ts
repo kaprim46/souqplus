@@ -120,7 +120,7 @@ export default {
             component: () => import('@/views/dashboard/pages/sub-categories/create.vue'),
         },
         /**
-         * Sub Sub Categories -- NEWLY ADDED
+         * Sub Sub Categories
          */
         {
             path: '/dashboard/sub-sub-categories/:sub_category_id/create',
@@ -132,6 +132,7 @@ export default {
             name: 'sub-sub-category.edit',
             component: () => import('@/views/dashboard/pages/sub-sub-categories/edit.vue'),
         },
+        
         /**
          * Advertisements
          */
