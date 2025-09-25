@@ -78,9 +78,6 @@ class PageController
             if ($request->hasFile('icon')) {
                 $icon = $request->file('icon');
                 
-                // THE FIX:
-                // 1. We specify 'pages' as the path.
-                // 2. We explicitly state 'public' as the disk to use.
                 $path = $icon->store('pages', 'public');
                 
                 $data['icon'] = basename($path);
@@ -116,7 +113,7 @@ class PageController
             if ($request->hasFile('icon')) {
                 $icon = $request->file('icon');
 
-                // THE SAME FIX APPLIED HERE:
+               
                 $path = $icon->store('pages', 'public');
 
                 $data['icon'] = basename($path);

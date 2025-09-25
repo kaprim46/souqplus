@@ -78,27 +78,35 @@ class ExploreSliderController
             $image = $request->file('image');
 
             if($request->hasFile('image')) {
-                $path = $image->store('public/explore_sliders', [
-                    'filename' => $image->getClientOriginalName() . '.' . $image->getClientOriginalExtension() . '.' . time() . '.' . $image->getClientOriginalExtension()
-                ]);
-                $data['image'] = basename($path);
-            }
-
-            $slider->update($data);
-
-            return response()->json([
-                'ok'            => true,
-                'slider'        => $slider,
-                'message'       => __('Explore Slider updated successfully')
-            ]);
-        } catch (Throwable $e) {
-            return response()->json([
-                'ok'        => false,
-                'message'   => __('Something went wrong, please try again later'),
-                'error'     => $e->getMessage()
-            ]);
+        $originalName = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
+        $cleanName = preg_replace('/[^A-Za-z0-9\-_]/', '_', $originalName);
+        $filename = $cleanName . '_' . time() . '.' . $image->getClientOriginalExtension();
+        
+        $destinationPath = public_path('storage/explore_sliders');
+        
+        if (!file_exists($destinationPath)) {
+            mkdir($destinationPath, 0755, true);
         }
+        
+        $image->move($destinationPath, $filename);
+        $data['image'] = $filename;
     }
+
+        $slider->update($data);
+
+        return response()->json([
+            'ok'            => true,
+            'slider'        => $slider,
+            'message'       => __('Explore Slider updated successfully')
+        ]);
+    } catch (Throwable $e) {
+        return response()->json([
+            'ok'        => false,
+            'message'   => __('Something went wrong, please try again later'),
+            'error'     => $e->getMessage()
+        ]);
+    }
+}
 
     /**
      * Store explore slider
@@ -108,14 +116,22 @@ class ExploreSliderController
     public function store(ExploreSliderRequest $request): JsonResponse
     {
         try {
-            $data = $request->only(['title', 'description', 'link', 'image']);
+            $data = $request->only(['title', 'description', 'link']);
             $image = $request->file('image');
 
             if($image) {
-                $path = $image->store('public/explore_sliders', [
-                    'filename' => $image->getClientOriginalName() . '.' . $image->getClientOriginalExtension() . '.' . time() . '.' . $image->getClientOriginalExtension()
-                ]);
-                $data['image'] = basename($path);
+                $originalName = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
+                $cleanName = preg_replace('/[^A-Za-z0-9\-_]/', '_', $originalName);
+                $filename = $cleanName . '_' . time() . '.' . $image->getClientOriginalExtension();
+                
+                $destinationPath = public_path('storage/explore_sliders');
+                
+                if (!file_exists($destinationPath)) {
+                    mkdir($destinationPath, 0755, true);
+                }
+                
+                $image->move($destinationPath, $filename);
+                $data['image'] = $filename;
             }
 
             $exploreSlider = ExploreSlider::query()->create($data);
@@ -133,7 +149,6 @@ class ExploreSliderController
             ]);
         }
     }
-
     /**
      * Delete explore slider
      * @param ExploreSlider $slider

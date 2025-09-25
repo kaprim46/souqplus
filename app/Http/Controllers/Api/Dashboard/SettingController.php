@@ -56,34 +56,30 @@ class SettingController extends Controller
         try {
             $data = $request->validated();
 
-            // Handle logo upload
             if($request->hasFile('app_logo')) {
-                // Delete old logo if exists
                 $oldLogo = Setting::get('app_logo');
                 if($oldLogo && Storage::disk('public')->exists('logo/' . $oldLogo)) {
                     Storage::disk('public')->delete('logo/' . $oldLogo);
                 }
 
                 $logoExtension = $request->file('app_logo')->extension();
-                $logoFilename = 'logo_' . time() . '.' . $logoExtension; // Add timestamp to avoid caching issues
+                $logoFilename = 'logo_' . time() . '.' . $logoExtension; 
                 
-                // Store in storage/app/public/logo directory
+                
                 $request->file('app_logo')->storeAs('logo', $logoFilename, 'public');
                 $data['app_logo'] = $logoFilename;
             }
 
-            // Handle favicon upload
             if($request->hasFile('app_favicon')) {
-                // Delete old favicon if exists
                 $oldFavicon = Setting::get('app_favicon');
                 if($oldFavicon && Storage::disk('public')->exists('favicon/' . $oldFavicon)) {
                     Storage::disk('public')->delete('favicon/' . $oldFavicon);
                 }
 
                 $faviconExtension = $request->file('app_favicon')->extension();
-                $faviconFilename = 'favicon_' . time() . '.' . $faviconExtension; // Add timestamp to avoid caching issues
+                $faviconFilename = 'favicon_' . time() . '.' . $faviconExtension; 
                 
-                // Store in storage/app/public/favicon directory
+                
                 $request->file('app_favicon')->storeAs('favicon', $faviconFilename, 'public');
                 $data['app_favicon'] = $faviconFilename;
             }
@@ -99,7 +95,6 @@ class SettingController extends Controller
                 );
             }
 
-            // Get updated settings to return with full URLs
             $updatedSettings = [
                 'app_currency' => Setting::get('app_currency', '$'),
                 'app_description' => Setting::get('app_description', 'test'),
@@ -140,12 +135,10 @@ class SettingController extends Controller
     {
         $filename = Setting::get($settingKey, $default);
         
-        // If the filename exists and is not the default, return full URL
         if ($filename && $filename !== $default && Storage::disk('public')->exists($folder . '/' . $filename)) {
             return asset('storage/' . $folder . '/' . $filename);
         }
         
-        // Return default or the filename as is
         return $filename;
     }
 }

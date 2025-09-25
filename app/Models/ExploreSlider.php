@@ -25,6 +25,6 @@ class ExploreSlider extends Model
 
     public function getImageUrlAttribute()
     {
-        return $this->image ? asset('/explore_sliders/' . $this->image) : null;
+        return $this->image ? asset('storage/explore_sliders/' . $this->image) : null;
     }
 }

@@ -250,21 +250,18 @@ const onChangeScreen = (event: any) => {
 }
 
 const onSubmit = async () => {
-  selectedSlider.value?.id ? await sliderStore.updateSlider(selectedSlider.value).then((ok: any) => {
-    if (ok) {
-      isModalOpen.value = false;
-      selectedSlider.value = {
-        title: '', description: '', image: '', link: ''
-      }
-    }
-  }) : await sliderStore.createSlider(selectedSlider.value).then((ok: any) => {
-    if (ok) {
-      isModalOpen.value = false;
-      selectedSlider.value = {
-        title: '', description: '', image: '', link: ''
-      }
-    }
-  });
+  const success = selectedSlider.value?.id 
+    ? await sliderStore.updateSlider(selectedSlider.value)
+    : await sliderStore.createSlider(selectedSlider.value);
+    
+  if (success) {
+    isModalOpen.value = false;
+    selectedSlider.value = {
+      title: '', description: '', image: '', link: ''
+    };
+    // Refresh the list to ensure we have the latest data
+    await sliderStore.getSliders();
+  }
 }
 
 
