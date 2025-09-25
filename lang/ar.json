@@ -387,5 +387,9 @@
   "Ad deleted at :date": "تم حذف الإعلان في :date",
   "Enter notification title": "أدخل عنوان الإشعار",
   "Add Sub Sub Category": "إضافة الفئة الفرعية الثانية",
-  "Create new sub sub category": "إنشاء فئة فرعية ثانية جديدة"
+  "Create new sub sub category": "إنشاء فئة فرعية ثانية جديدة",
+  "Sub Sub Categories": "الفئات الفرعية الثانية",
+  "Manage your sub sub categories": "إدارة الفئات الفرعية الثانية",
+  "View Sub Sub Categories": "عرض الفئة الفرعية الثانية",
+  "Sub Category :" : "الفئة الفرعية :"
 }

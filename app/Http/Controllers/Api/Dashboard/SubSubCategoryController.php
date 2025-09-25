@@ -12,7 +12,7 @@ class SubSubCategoryController extends Controller
     /**
      * Display a listing of the resource for a specific SubCategory.
      */
-    public function index(Request $request, SubCategory $subCategory)
+   public function index(Request $request, SubCategory $subCategory)
     {
         $query = $subCategory->subSubCategories();
 
@@ -22,8 +22,24 @@ class SubSubCategoryController extends Controller
 
         $subSubCategories = $query->latest()->paginate($request->pagination ?? 10);
 
-        return $subSubCategories;
+        return response()->json([
+            'data' => $subSubCategories->items(),
+            'meta' => [
+                'current_page' => $subSubCategories->currentPage(),
+                'last_page' => $subSubCategories->lastPage(),
+                'total' => $subSubCategories->total(),
+            ],
+            'sub_category' => [
+                'id' => $subCategory->id,
+                'name' => $subCategory->name,
+            ]
+        ]);
     }
+
+public function subCategory(): BelongsTo
+{
+    return $this->belongsTo(SubCategory::class);
+}
 
     /**
      * Store a newly created resource in storage.

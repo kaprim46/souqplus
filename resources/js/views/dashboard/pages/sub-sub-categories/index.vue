@@ -11,7 +11,11 @@
                                 {{ $t('Sub Sub Categories') }}
                             </h2>
                             <p class="text-sm text-gray-600 dark:text-gray-400">
-                                {{ $t('Manage your sub sub categories') }}
+                                {{ 
+                                    store.parentSubCategory 
+                                    ? `${$t('Sub Category :')} ${store.parentSubCategory.name}` 
+                                    : $t('Manage your sub sub categories') 
+                                }}
                             </p>
                         </div>
                         <div class="flex flex-col md:flex-row gap-2">
@@ -114,9 +118,11 @@ watch(store.filters, _.debounce(async () => {
 }, 500), { deep: true })
 
 onMounted(async () => {
-    // Reset filters and page on mount to ensure fresh state
+    store.$reset(); 
     store.filters.search = '';
-    store.pagination.current_page = 1;
-    if (subCategoryId) await store.fetch(subCategoryId)
+
+    if (subCategoryId) {
+        await store.fetch(subCategoryId);
+    }
 })
 </script>

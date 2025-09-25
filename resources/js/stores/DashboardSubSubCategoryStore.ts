@@ -2,8 +2,6 @@ import { defineStore } from 'pinia';
 import axios from '@/axios';
 import { ref } from 'vue';
 
-// Define a type for your SubSubCategory for the dashboard
-// It's good practice to have it here, even if it's similar to another type
 export interface SubSubCategory {
     id?: number;
     name: string;
@@ -11,14 +9,17 @@ export interface SubSubCategory {
     sub_category_id: number | null;
 }
 
+export interface ParentSubCategory {
+    id: number;
+    name: string;
+}
+
 export const useDashboardSubSubCategoryStore = defineStore('dashboardSubSubCategory', () => {
-    // --- STATES ---
     const subSubCategories = ref<SubSubCategory[]>([]);
+    const parentSubCategory = ref<ParentSubCategory | null>(null); 
     const pagination = ref({ current_page: 1, last_page: 1, total: 0 });
     const filters = ref({ search: '', pagination: 10 });
     const isLoading = ref(false);
-
-    // --- ACTIONS ---
 
     /**
      * Fetches a paginated list of sub-sub-categories for the dashboard.
@@ -29,7 +30,6 @@ export const useDashboardSubSubCategoryStore = defineStore('dashboardSubSubCateg
         if (prevPage) pagination.value.current_page--;
 
         try {
-            // Use the dashboard-specific API endpoint
             const { data } = await axios.get(`/dashboard/sub/categories/${subCategoryId}/sub-sub-categories`, {
                 params: {
                     page: pagination.value.current_page,
@@ -38,8 +38,11 @@ export const useDashboardSubSubCategoryStore = defineStore('dashboardSubSubCateg
             });
             subSubCategories.value = data.data;
             pagination.value = data.meta;
+            parentSubCategory.value = data.sub_category; 
+
         } catch (error) {
             console.error("Failed to fetch dashboard sub-sub-categories", error);
+            parentSubCategory.value = null; // Reset on error
         } finally {
             isLoading.value = false;
         }
@@ -55,20 +58,27 @@ export const useDashboardSubSubCategoryStore = defineStore('dashboardSubSubCateg
         
         try {
             await axios.delete(`/dashboard/sub-sub-categories/${id}`);
-            // After deleting, refetch the data for the current sub-category
             await fetch(subCategoryId);
         } catch (error) {
             console.error("Failed to delete sub-sub-category", error);
         }
     }
 
-    // --- RETURN ---
+    function $reset() {
+        subSubCategories.value = [];
+        parentSubCategory.value = null;
+        pagination.value = { current_page: 1, last_page: 1, total: 0 };
+    }
+
+
     return {
         subSubCategories,
+        parentSubCategory, // Keep exposing this
         pagination,
         filters,
         isLoading,
         fetch,
         onDelete,
+        $reset, // Expose the reset function
     };
 });

@@ -84,7 +84,6 @@ class SettingController extends Controller
                 $data['app_favicon'] = $faviconFilename;
             }
 
-            // Update settings in database
             foreach ($data as $key => $value) {
                 Setting::query()->updateOrInsert(
                     [

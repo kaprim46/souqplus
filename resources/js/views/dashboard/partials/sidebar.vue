@@ -98,10 +98,7 @@ const route = useRoute();
 const settingsStore = useSettingsStore();
 const $assetUrl = inject('$assetUrl');
 
-// Function to get logo source with proper URL handling
 const getLogoSrc = () => {
-  // Just return the URL from the store. 
-  // We can add a cache-busting timestamp to force a reload after update.
   const timestamp = new Date().getTime();
   return `${settingsStore.appSettings.app_logo}?t=${timestamp}`;
 };

@@ -37,7 +37,7 @@ const getDetails = async () => {
     isLoading.value = true
     try {
         const { data } = await axios.get(`/dashboard/sub-sub-categories/${route.params.id}`);
-        form.value = data.data; // Assuming API returns the object in a 'data' key
+        form.value = data.data; 
     } catch (error) {
         await router.back()
     } finally {

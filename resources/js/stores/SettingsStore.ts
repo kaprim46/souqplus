@@ -82,13 +82,12 @@ export const useSettingsStore = defineStore({
               // Construct full URL for logo and favicon if they don't already have a full URL
               const value = data.settings[key];
               if (value && !value.startsWith('http')) {
-                // Assuming your Laravel backend serves these from storage/app/public/logo and storage/app/public/favicon
-                // You might need to adjust the base URL based on your setup
                 const baseUrl = import.meta.env.VITE_API_BASE_URL || window.location.origin;
                 const folder = key === 'app_logo' ? 'logo' : 'favicon';
-                this.appSettings[key as keyof AppSettings] = `${baseUrl}/storage/${folder}/${value}`;
+                // Only assign string to keys that are of type string
+                (this.appSettings as any)[key] = `${baseUrl}/storage/${folder}/${value}`;
               } else {
-                this.appSettings[key as keyof AppSettings] = value;
+                (this.appSettings as any)[key] = value;
               }
             } else {
               this.appSettings[key as keyof AppSettings] = data.settings[key];
@@ -115,10 +114,10 @@ export const useSettingsStore = defineStore({
       dataForm.append('app_currency', this.appSettings.app_currency);
       
       // Only append files if they are File objects (newly uploaded)
-      if (this.appSettings.app_logo instanceof File) {
+      if ((this.appSettings.app_logo as any) instanceof File) {
         dataForm.append('app_logo', this.appSettings.app_logo);
       }
-      if (this.appSettings.app_favicon instanceof File) {
+      if ((this.appSettings.app_favicon as any) instanceof File) {
         dataForm.append('app_favicon', this.appSettings.app_favicon);
       }
       
@@ -155,7 +154,7 @@ export const useSettingsStore = defineStore({
               if (value && !value.startsWith('http')) {
                 const baseUrl = import.meta.env.VITE_API_BASE_URL || window.location.origin;
                 const folder = key === 'app_logo' ? 'logo' : 'favicon';
-                this.appSettings[key as keyof AppSettings] = `${baseUrl}/storage/${folder}/${value}`;
+                (this.appSettings as any)[key] = `${baseUrl}/storage/${folder}/${value}`;
               } else {
                 this.appSettings[key as keyof AppSettings] = value;
               }

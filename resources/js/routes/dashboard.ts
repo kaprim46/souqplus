@@ -123,6 +123,21 @@ export default {
          * Sub Sub Categories
          */
         {
+            path: '/dashboard/sub-categories/:sub_category_id/sub-sub-categories',
+            name: 'sub-sub-categories.index',
+            component: () => import('@/views/dashboard/pages/sub-sub-categories/index.vue'),
+        },
+        {
+            path: '/dashboard/sub-sub-categories/:sub_category_id/create',
+            name: 'sub-sub-category.create',
+            component: () => import('@/views/dashboard/pages/sub-sub-categories/create.vue'),
+        },
+        {
+            path: '/dashboard/sub-sub-categories/edit/:id',
+            name: 'sub-sub-category.edit',
+            component: () => import('@/views/dashboard/pages/sub-sub-categories/edit.vue'),
+        },
+        {
             path: '/dashboard/sub-sub-categories/:sub_category_id/create',
             name: 'sub-sub-category.create',
             component: () => import('@/views/dashboard/pages/sub-sub-categories/create.vue'),

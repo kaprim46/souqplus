@@ -29,4 +29,8 @@ export interface SubSubCategory {
   name: string;
   sub_category_id: number | null;
   status: 'active' | 'inactive';
+  sub_category?: {
+    id: number;
+    name: string;
+  }
 }
