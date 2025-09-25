@@ -90,7 +90,7 @@
                                         <!-- THIS BUTTON NOW NAVIGATES DIRECTLY TO THE CREATE PAGE -->
                                         <v-button color="purple" class="whitespace-nowrap" @click="router.push({ name: 'sub-sub-category.create', params: { sub_category_id: category.id } })">
                                             <i class="icon mgc_org_tree_line"></i>
-                                            {{ $t('Sub Sub Categories') }}
+                                            {{ $t('Add Sub Sub Category') }}
                                         </v-button>
 
                                         <v-button color="blue" class="whitespace-nowrap" @click="router.push({ name: 'sub-category.edit', params: { id: category.id } })">

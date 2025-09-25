@@ -386,5 +386,6 @@
   "Account deleted at :date": "تم حذف الحساب في :date",
   "Ad deleted at :date": "تم حذف الإعلان في :date",
   "Enter notification title": "أدخل عنوان الإشعار",
-  "Add Sub Sub Category": "إضافة الفئة الفرعية الثانية"
+  "Add Sub Sub Category": "إضافة الفئة الفرعية الثانية",
+  "Create new sub sub category": "إنشاء فئة فرعية ثانية جديدة",
 }

@@ -3,7 +3,13 @@
         <!-- Name -->
         <div>
             <label for="name" class="block text-sm mb-2 dark:text-white">{{ $t('Name') }}</label>
-            <v-input type="text" id="name" :value="data_form.name" @update:input="data_form.name = $event" />
+            <v-input
+                type="text"
+                id="name"
+                :placeholder="$t('Name')"
+                :value="data_form.name"
+                @update:input="data_form.name = $event"
+            />
             <p v-if="errors.name" class="text-xs text-red-600 mt-2">@{{ errors.name[0] }}</p>
         </div>
 
